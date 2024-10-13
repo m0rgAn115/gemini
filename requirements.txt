@@ -1,0 +1,8 @@
+py-eureka-client
+config
+flask
+flask_cors
+google-generativeai
+python-dotenv
+endpoints
+
