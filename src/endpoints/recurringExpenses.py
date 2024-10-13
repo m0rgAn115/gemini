@@ -39,6 +39,7 @@ def getRecurringExpenses(app):
             # Generar la solicitud inicial para el modelo con un llamado explícito a obtener múltiples recomendaciones
             INITIAL_PROMPT = f'''
             Con los siguientes datos, identificar los pagos que repito cada cierta fecha, me preguntaras si quiero pagarlas este mes de nuevo.
+            Sino encuentras un nombre simulalo.
 
             Transacciones:
             {transaction_history}
@@ -47,7 +48,10 @@ def getRecurringExpenses(app):
             {{
                 "Title": "Título llamativo para captar la atención de la persona",
                 "description": "Breve descripción de la recomendación",
-                "status": "pagado o no pagado"
+                "status": "pagado o no pagado",
+                "name": "Nombre del que recibe el pago",
+                "monto": "Monto de la transacción",
+                "concepto": "Concepto de la transacción",
 
             }}
 

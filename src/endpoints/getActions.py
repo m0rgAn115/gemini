@@ -34,7 +34,7 @@ def getActionText(app):
             
             INITIAL_PROMPT = f'''
             Si tienes suficiente información, debes generar un esquema de JSON para la acción correspondiente. Si no, debes solicitar los datos faltantes al usuario es decir, debes pedir los detalles faltantes al usuario antes de continuar.
-            Para las transacciones es importante que pidas el nombre de la persona o la cuenta a la que se quiere mandar el dinero.
+            Para las transacciones es importante que pidas el nombre de la persona o la cuenta a la que se quiere mandar el dinero y para el dinero solo el monto y no la divisa.
 
             Historial de conversación:
             {history_data}
