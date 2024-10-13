@@ -1,4 +1,3 @@
-import requests
 import json
 import logging
 from flask import jsonify
@@ -23,13 +22,69 @@ def getRecomendationsSpends(app):
     @app.route('/SpendingShield', methods=['GET'])
     def get_recomendations_spends():
         try:
-            
-            response = requests.get('https://backend-banorte-328383011109.us-central1.run.app/api/movimientos/get/dto/usuario/5')
-
-            if response.status_code != 200:
-                return jsonify({'error': 'No se pudo obtener el historial de transacciones'}), 400
-
-            transaction_history = response.json()
+            # Historial de transacciones simulado
+            transaction_history = [
+                {
+                    "descripcion": "Supermercado",
+                    "tipo": "Compra",
+                    "monto": 150.0,
+                    "fecha": "2024-10-01T14:35:20.911+00:00"
+                },
+                {
+                    "descripcion": "Restaurante",
+                    "tipo": "Ocio",
+                    "monto": 85.5,
+                    "fecha": "2024-10-02T19:45:10.911+00:00"
+                },
+                {
+                    "descripcion": "Netflix",
+                    "tipo": "Suscripción",
+                    "monto": 12.99,
+                    "fecha": "2024-10-03T08:30:45.911+00:00"
+                },
+                {
+                    "descripcion": "HBO max",
+                    "tipo": "Transferencia",
+                    "monto": 100.0,
+                    "fecha": "2024-10-12T23:13:36.911+00:00"
+                },
+                {
+                    "descripcion": "Ropa",
+                    "tipo": "Ocio",
+                    "monto": 60.0,
+                    "fecha": "2024-10-05T22:00:00.911+00:00"
+                },
+                {
+                    "descripcion": "Pago de alquiler",
+                    "tipo": "Gasto fijo",
+                    "monto": 500.0,
+                    "fecha": "2024-10-05T10:15:30.911+00:00"
+                },
+                {
+                    "descripcion": "Ropa",
+                    "tipo": "Compra",
+                    "monto": 200.0,
+                    "fecha": "2024-10-07T16:20:50.911+00:00"
+                },
+                {
+                    "descripcion": "Starbucks",
+                    "tipo": "Ocio",
+                    "monto": 20.0,
+                    "fecha": "2024-10-09T17:40:00.911+00:00"
+                },
+                {
+                    "descripcion": "Gimnasio",
+                    "tipo": "Gasto fijo",
+                    "monto": 35.0,
+                    "fecha": "2024-10-10T09:00:00.911+00:00"
+                },
+                {
+                    "descripcion": "Cine",
+                    "tipo": "Ocio",
+                    "monto": 25.0,
+                    "fecha": "2024-10-11T21:10:00.911+00:00"
+                }
+            ]
 
             if not transaction_history:
                 return jsonify({'error': 'No se proporcionó un historial de transacciones válido'}), 400
@@ -52,7 +107,7 @@ def getRecomendationsSpends(app):
             '''
 
             # Inicializar el modelo generativo
-            model = genai.GenerativeModel("gemini-1.5-pro-latest", system_instruction=systemInstruction)
+            model = genai.GenerativeModel("gemini-1.5-flash-latest", system_instruction=systemInstruction)
 
             # Generar el contenido
             response = model.generate_content(
